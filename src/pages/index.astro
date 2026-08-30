@@ -1,17 +1,54 @@
 ---
+import { getCollection } from 'astro:content';
 
+const works = await getCollection('works');
+works.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+// public/images/works/ 内の画像を全件自動検出
+const imageFiles = import.meta.glob('/public/images/works/*', { eager: true, query: '?url', import: 'default' });
+
+// 拡張子の違い（.jpg, .jpeg, .pngなど）を無視して一致する画像パスを返す関数
+function resolveImagePath(imagePath: string) {
+  const baseName = imagePath.split('/').pop()?.split('.')[0];
+  const matchedPath = Object.keys(imageFiles).find((path) => {
+    const fileBase = path.split('/').pop()?.split('.')[0];
+    return fileBase === baseName;
+  });
+  return matchedPath ? matchedPath.replace('/public', '') : imagePath;
+}
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>秋吉 慧一 | Portfolio</title>
+  </head>
+  <body>
+    <main style="max-width: 900px; margin: 0 auto; padding: 2rem 1rem; font-family: sans-serif;">
+      <header style="margin-bottom: 3rem; text-align: center;">
+        <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Keiichi Akiyoshi</h1>
+        <p style="color: #666;">Web Marketing / DX / Creative Portfolio</p>
+      </header>
+
+      <section>
+        <h2 style="border-bottom: 2px solid #333; padding-bottom: 0.5rem; margin-bottom: 2rem;">Works</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+          {works.map((work) => (
+            <article style="border: 1px solid #eee; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+              <img src={resolveImagePath(work.data.image)} alt={work.data.title} style="width: 100%; height: 200px; object-fit: cover;" />
+              <div style="padding: 1.5rem;">
+                <span style="font-size: 0.8rem; background: #f0f0f0; padding: 0.2rem 0.6rem; border-radius: 4px; color: #555;">{work.data.category}</span>
+                <h3 style="margin: 0.8rem 0 0.5rem; font-size: 1.2rem;">{work.data.title}</h3>
+                <p style="color: #666; font-size: 0.9rem; line-height: 1.5; margin-bottom: 1rem;">{work.data.description}</p>
+                <time style="font-size: 0.8rem; color: #999;">{work.data.date}</time>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
