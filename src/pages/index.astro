@@ -41,7 +41,11 @@ function resolveImagePath(imagePath: string) {
               <img src={resolveImagePath(work.data.image)} alt={work.data.title} style="width: 100%; height: 200px; object-fit: cover;" />
               <div style="padding: 1.5rem;">
                 <span style="font-size: 0.8rem; background: #f0f0f0; padding: 0.2rem 0.6rem; border-radius: 4px; color: #555;">{work.data.category}</span>
-                <h3 style="margin: 0.8rem 0 0.5rem; font-size: 1.2rem;">{work.data.title}</h3>
+                <h3 style="margin: 0.8rem 0 0.5rem; font-size: 1.2rem;">
+					<a href={`/works/${work.id}`} style="color: inherit; text-decoration: none;">
+						{work.data.title}
+					</a>
+				</h3>
                 <p style="color: #666; font-size: 0.9rem; line-height: 1.5; margin-bottom: 1rem;">{work.data.description}</p>
                 <time style="font-size: 0.8rem; color: #999;">{work.data.date}</time>
               </div>
