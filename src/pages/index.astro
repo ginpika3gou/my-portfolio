@@ -7,7 +7,7 @@ works.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).get
 // public/images/works/ 内の画像を全件自動検出
 const imageFiles = import.meta.glob('/public/images/works/*', { eager: true, query: '?url', import: 'default' });
 
-// 拡張子の違い（.jpg, .jpeg, .pngなど）を無視して一致する画像パスを返す関数
+// 拡張子の違いを無視して一致する画像パスを返す関数
 function resolveImagePath(imagePath: string) {
   const baseName = imagePath.split('/').pop()?.split('.')[0];
   const matchedPath = Object.keys(imageFiles).find((path) => {
@@ -16,6 +16,26 @@ function resolveImagePath(imagePath: string) {
   });
   return matchedPath ? matchedPath.replace('/public', '') : imagePath;
 }
+
+// スキルセットデータ
+const skillCategories = [
+  {
+    title: 'Marketing & DX Strategy',
+    skills: ['Webマーケティング企画・運用', 'DX推進・業務プロセス改善', 'コンテンツプロデュース', 'アクセス解析']
+  },
+  {
+    title: 'Creative & Visual Design',
+    skills: ['動画編集・映像制作 (Premiere Pro / After Effects)', 'グラフィックデザイン (Illustrator / Photoshop)', 'ポスター・グラフィックツール制作']
+  },
+  {
+    title: 'Automation & Technology',
+    skills: ['Python (Webスクレイピング / タスク自動化)', 'Google Apps Script (GAS / 業務ツール開発)', 'Astro / HTML / CSS / JavaScript']
+  },
+  {
+    title: 'Craft & Fabrication',
+    skills: ['大型立体造形・プロップ制作', 'レザークラフト・カルトナージュ', 'ハンドクラフト・標本制作']
+  }
+];
 ---
 
 <html lang="ja">
@@ -24,35 +44,77 @@ function resolveImagePath(imagePath: string) {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>秋吉 慧一 | Portfolio</title>
+    <title>秋吉 慧一 | Keiichi Akiyoshi Portfolio</title>
   </head>
-  <body>
-    <main style="max-width: 900px; margin: 0 auto; padding: 2rem 1rem; font-family: sans-serif;">
-      <header style="margin-bottom: 3rem; text-align: center;">
-        <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Keiichi Akiyoshi</h1>
-        <p style="color: #666;">Web Marketing / DX / Creative Portfolio</p>
+  <body style="background-color: #fafafa; color: #333; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; margin: 0;">
+    <main style="max-width: 920px; margin: 0 auto; padding: 3rem 1.5rem;">
+      
+      <!-- Header -->
+      <header style="margin-bottom: 3.5rem; text-align: center;">
+        <h1 style="font-size: 2.6rem; margin-bottom: 0.4rem; letter-spacing: -0.02em;">秋吉 慧一</h1>
+        <p style="font-size: 1.1rem; color: #666; margin-top: 0; font-weight: 500;">Keiichi Akiyoshi</p>
+        <p style="font-size: 0.95rem; color: #888; max-width: 600px; margin: 1rem auto 0; line-height: 1.5;">
+          Web Marketing / DX Strategy / Video & Graphic Design / Automation & Craft
+        </p>
       </header>
 
+      <!-- About Section -->
+      <section style="background: #fff; border: 1px solid #e5e5e5; border-radius: 12px; padding: 2rem; margin-bottom: 3rem; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+        <h2 style="font-size: 1.4rem; margin-top: 0; margin-bottom: 1rem; border-bottom: 2px solid #222; padding-bottom: 0.4rem; display: inline-block;">About</h2>
+        <p style="font-size: 0.95rem; color: #444; line-height: 1.8; margin-bottom: 1rem;">
+          組織内のWebマーケティングおよびDX推進を担当し、広報コンテンツ（映像・デザイン）の企画制作から、PythonやGASを活用した現場業務の自動化ツールの開発・改善まで幅広く手掛けています。
+        </p>
+        <p style="font-size: 0.95rem; color: #444; line-height: 1.8; margin: 0;">
+          工学およびデザインのバックグラウンドを持ち、デジタルでの業務効率化やデザイン制作にとどまらず、大型立体プロップ制作やレザークラフトなど手技によるデジタル・フィジカル双方の造形表現にも意欲的に取り組んでいます。
+        </p>
+      </section>
+
+      <!-- Skills Section -->
+      <section style="margin-bottom: 3.5rem;">
+        <h2 style="font-size: 1.4rem; margin-top: 0; margin-bottom: 1.5rem; border-bottom: 2px solid #222; padding-bottom: 0.4rem; display: inline-block;">Skills & Expertise</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem;">
+          {skillCategories.map((category) => (
+            <div style="background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; padding: 1.25rem; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+              <h3 style="font-size: 1rem; margin-top: 0; margin-bottom: 0.8rem; color: #111; font-weight: 600;">{category.title}</h3>
+              <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.88rem; color: #555;">
+                {category.skills.map((skill) => (
+                  <li style="margin-bottom: 0.4rem;">{skill}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Works Section -->
       <section>
-        <h2 style="border-bottom: 2px solid #333; padding-bottom: 0.5rem; margin-bottom: 2rem;">Works</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+        <h2 style="font-size: 1.4rem; margin-top: 0; margin-bottom: 1.5rem; border-bottom: 2px solid #222; padding-bottom: 0.4rem; display: inline-block;">Works</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.8rem;">
           {works.map((work) => (
-            <article style="border: 1px solid #eee; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-              <img src={resolveImagePath(work.data.image)} alt={work.data.title} style="width: 100%; height: 200px; object-fit: cover;" />
-              <div style="padding: 1.5rem;">
-                <span style="font-size: 0.8rem; background: #f0f0f0; padding: 0.2rem 0.6rem; border-radius: 4px; color: #555;">{work.data.category}</span>
-                <h3 style="margin: 0.8rem 0 0.5rem; font-size: 1.2rem;">
-					<a href={`/works/${work.id}`} style="color: inherit; text-decoration: none;">
-						{work.data.title}
-					</a>
-				</h3>
-                <p style="color: #666; font-size: 0.9rem; line-height: 1.5; margin-bottom: 1rem;">{work.data.description}</p>
+            <article style="background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.03); transition: transform 0.2s ease;">
+              <img src={resolveImagePath(work.data.image)} alt={work.data.title} style="width: 100%; height: 190px; object-fit: cover;" />
+              <div style="padding: 1.25rem;">
+                <span style="font-size: 0.75rem; font-weight: 600; background: #f0f0f0; padding: 0.25rem 0.6rem; border-radius: 4px; color: #555;">{work.data.category}</span>
+                <h3 style="margin: 0.8rem 0 0.5rem; font-size: 1.1rem; line-height: 1.4;">
+                  <a href={`/works/${work.id}`} style="color: #111; text-decoration: none;">
+                    {work.data.title}
+                  </a>
+                </h3>
+                <p style="color: #666; font-size: 0.88rem; line-height: 1.5; margin-bottom: 1rem;">{work.description || work.data.description}</p>
                 <time style="font-size: 0.8rem; color: #999;">{work.data.date}</time>
               </div>
             </article>
           ))}
         </div>
       </section>
+
+      <!-- Footer -->
+      <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #e5e5e5; text-align: center; color: #999; font-size: 0.85rem;">
+        <p>© {new Date().getFullYear()} Keiichi Akiyoshi. All rights reserved.</p>
+      </footer>
+
     </main>
   </body>
 </html>
