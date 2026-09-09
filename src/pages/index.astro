@@ -1,15 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
-// worksフォルダの中にあるすべての .md ファイルのデータを自動取得する
 const allWorks = Object.values(import.meta.glob('./works/*.md', { eager: true }));
+// 画像が設定されている作品を最大5つまでピックアップ（ヒーローのカルーセル用）
+const featuredWorks = allWorks.filter((work: any) => work.frontmatter.image).slice(0, 5);
 ---
 
 <Layout title="秋吉 慧一 | DX推進 & インハウスクリエイター">
 	<!-- ヒーローセクション -->
-	<section class="fade-in px-6 py-20 max-w-5xl mx-auto md:flex items-center gap-12">
-		<div class="md:w-2/3">
+	<section class="fade-in px-6 py-20 max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12 mt-4">
+		<!-- 左側：テキスト -->
+		<div class="md:w-1/2 w-full">
 			<h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight mb-4">
-				秋吉 慧一 <br><span class="text-2xl md:text-3xl font-medium text-slate-500">Keiichi Akiyoshi</span>
+				秋吉 慧一 <br><span class="text-2xl md:text-3xl font-medium text-slate-500 tracking-wider">AKIYOSHI KEIICHI</span>
 			</h1>
 			<p class="text-xl text-blue-600 mb-6 font-bold">
 				DX推進 & インハウスクリエイター
@@ -18,6 +20,28 @@ const allWorks = Object.values(import.meta.glob('./works/*.md', { eager: true })
 				泥臭い業務課題を、Python/GASによる「自動化プログラム」と、<br class="hidden md:block">
 				映像・デザインによる「クリエイティブ」の両面から解決します。
 			</p>
+		</div>
+
+		<!-- 右側：スクラップブック風 動く写真立て（カルーセル） -->
+		<div class="md:w-1/2 w-full relative h-[300px] md:h-[350px]">
+			<!-- マスキングテープ装飾 -->
+			<div class="absolute -top-3 right-12 w-28 h-8 bg-amber-200/60 backdrop-blur-sm rotate-[5deg] z-20 shadow-sm border border-white/40"></div>
+			
+			<div class="relative w-full h-full bg-white p-3 rounded-lg shadow-xl border border-slate-200 rotate-[-2deg] hover:rotate-0 hover:-translate-y-1 transition duration-500">
+				{featuredWorks.map((work: any, index: number) => (
+					<a href={work.url} 
+					   class={`carousel-item absolute inset-3 transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100 z-10 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'}`}>
+						<picture>
+							<source srcset={work.frontmatter.image.replace(/\.(png|jpe?g)$/i, '.avif')} type="image/avif" />
+							<img src={work.frontmatter.image} alt={work.frontmatter.title} class="w-full h-full object-cover rounded border border-slate-100" loading={index === 0 ? "eager" : "lazy"} decoding="async" />
+						</picture>
+						<div class="absolute bottom-3 left-3 right-3 bg-slate-900/80 backdrop-blur-md text-white p-3 rounded shadow-lg">
+							<span class="text-xs font-bold text-blue-300 mb-1 block">{work.frontmatter.category}</span>
+							<h3 class="text-sm font-bold truncate">{work.frontmatter.title}</h3>
+						</div>
+					</a>
+				))}
+			</div>
 		</div>
 	</section>
 
@@ -168,6 +192,25 @@ const allWorks = Object.values(import.meta.glob('./works/*.md', { eager: true })
 
 	<script>
 		document.addEventListener('DOMContentLoaded', () => {
+			const carouselItems = document.querySelectorAll('.carousel-item');
+			if (carouselItems.length > 1) {
+				let currentIndex = 0;
+				setInterval(() => {
+					// 今の画像を隠す
+					carouselItems[currentIndex].classList.replace('opacity-100', 'opacity-0');
+					carouselItems[currentIndex].classList.replace('z-10', 'z-0');
+					carouselItems[currentIndex].classList.replace('pointer-events-auto', 'pointer-events-none');
+					
+					// 次の画像のインデックスを計算
+					currentIndex = (currentIndex + 1) % carouselItems.length;
+					
+					// 次の画像を表示する
+					carouselItems[currentIndex].classList.replace('opacity-0', 'opacity-100');
+					carouselItems[currentIndex].classList.replace('z-0', 'z-10');
+					carouselItems[currentIndex].classList.replace('pointer-events-none', 'pointer-events-auto');
+				}, 4000); // 4秒（4000ミリ秒）ごとに切り替え
+			}
+
 			const skillCards = document.querySelectorAll('.skill-card');
 			const workCards = document.querySelectorAll('.work-card');
 			const filterBtns = document.querySelectorAll('.filter-btn');
