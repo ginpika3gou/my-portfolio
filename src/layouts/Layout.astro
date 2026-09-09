@@ -42,13 +42,20 @@ const { title } = Astro.props;
 	</body>
 
     <style is:global>
-        /* フワッと浮き上がるアニメーションの準備 */
+        body {
+            background-color: #f8fafc;
+            background-image: 
+            linear-gradient(to right, #e2e8f0 1px, transparent 1px),
+            linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
+            background-size: 32px 32px; /* 方眼のサイズ */
+        }
+
+        /* 以下は既存のフェードインアニメーションのCSS（そのまま残します） */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        /* 画面に入ったときに適用されるクラス */
         .fade-in.is-visible {
             opacity: 1;
             transform: translateY(0);
