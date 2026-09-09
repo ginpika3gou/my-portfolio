@@ -20,6 +20,8 @@ const { frontmatter } = Astro.props;
         src={frontmatter.image} 
         alt={frontmatter.title} 
         class="w-full h-auto rounded-xl mb-12 object-cover" 
+        loading="lazy" 
+        decoding="async"
       />
     )}
 
