@@ -2,7 +2,7 @@
 layout: ../../layouts/WorkLayout.astro
 title: 各種グラフィック・UIデザイン制作
 category: デザイン・動画
-image: /images/works/ui-app1.avif
+image: /images/works/ui-design-app.avif
 summary: ポスター、カレンダーなどのグラフィックデザインから、業務アプリやLINEリッチメニューのUI構築まで、目的に応じたビジュアル制作を行っています。
 ---
 
