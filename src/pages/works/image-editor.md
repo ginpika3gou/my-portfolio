@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/WorkLayout.astro
 title: ブログ画像編集・一括処理アプリ
-category: Auto & Tool
+category: 自動化・ツール
 image: /images/works/image-editor.png
 summary: 介護施設グループのブログ作成業務を効率化するために開発したGASアプリ。社内AIコンテスト入賞実績。
 ---

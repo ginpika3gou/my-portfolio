@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/WorkLayout.astro
 title: キプリスモルフォ等の標本風アート
-category: Craft & Art
+category: 造形・クラフト
 image: /images/works/butterfly.png
 summary: 蝶の実寸大アートを制作しメルカリで完売。さらに動画や小説などマルチメディアへ展開。
 ---

@@ -1,5 +1,5 @@
 ---
-import '../styles/global.css'; /* ← これを追加しました */
+import '../styles/global.css';
 
 export interface Props {
 	title: string;
@@ -17,69 +17,109 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+	<body class="text-slate-800 font-sans antialiased">
+		
 		<!-- ヘッダー -->
-		<header class="fixed w-full bg-white/80 backdrop-blur-md shadow-sm z-50">
+		<header class="fixed w-full bg-white/80 backdrop-blur-md shadow-sm z-50 transition-all">
 			<div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
 				<a href="/" class="text-xl font-bold tracking-tight text-slate-900">Keiichi Akiyoshi</a>
-				<nav class="hidden md:flex gap-6 text-sm font-medium text-slate-600">
-					<a href="/#about" class="hover:text-blue-600 transition">About</a>
-					<a href="/#skills" class="hover:text-blue-600 transition">Skills</a>
-					<a href="/#works" class="hover:text-blue-600 transition">Works</a>
+				
+				<!-- PC用メニュー -->
+				<nav class="hidden md:flex gap-6 text-sm font-bold text-slate-600">
+					<a href="/#about" class="hover:text-blue-600 transition">About <span class="text-xs font-normal text-slate-400 ml-1">私について</span></a>
+					<a href="/#skills" class="hover:text-blue-600 transition">Skills <span class="text-xs font-normal text-slate-400 ml-1">スキル</span></a>
+					<a href="/#works" class="hover:text-blue-600 transition">Works <span class="text-xs font-normal text-slate-400 ml-1">実績</span></a>
 				</nav>
+
+				<!-- スマホ用ハンバーガーボタン -->
+				<button id="menu-toggle" class="md:hidden text-slate-700 p-1 focus:outline-none cursor-pointer">
+					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+					</svg>
+				</button>
 			</div>
+
+			<!-- スマホ用ドロップダウンメニュー -->
+			<nav id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-md border-t border-slate-100 shadow-lg absolute w-full left-0">
+				<div class="flex flex-col px-6 py-4 gap-4 text-sm font-bold text-slate-600">
+					<a href="/#about" class="mobile-link hover:text-blue-600">About <span class="text-xs font-normal text-slate-400">私について</span></a>
+					<a href="/#skills" class="mobile-link hover:text-blue-600">Skills <span class="text-xs font-normal text-slate-400">スキル</span></a>
+					<a href="/#works" class="mobile-link hover:text-blue-600">Works <span class="text-xs font-normal text-slate-400">実績</span></a>
+				</div>
+			</nav>
 		</header>
 
-		<!-- ページの中身（index.astroなどが入る場所） -->
+		<!-- ページの中身 -->
 		<main class="pt-24 pb-12 min-h-screen">
 			<slot />
 		</main>
 
 		<!-- フッター -->
-		<footer class="bg-slate-900 py-8 text-center text-slate-400 text-sm">
+		<footer class="bg-slate-900 py-10 text-center text-slate-400 text-sm">
+			<div class="max-w-xl mx-auto px-6 mb-8">
+				<h4 class="text-white font-bold text-lg mb-4">お問い合わせ</h4>
+				<p class="mb-4 text-slate-300">制作や業務改善のご相談は、以下のフォームよりお気軽にご連絡ください。</p>
+				<!-- ※hrefの中にGoogleフォームのURLを入れます -->
+				<a href="https://forms.gle/Ry5zSSjjdHqYugRK8" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-full transition shadow-lg">
+					お問い合わせフォーム
+				</a>
+			</div>
 			<p>&copy; {new Date().getFullYear()} Keiichi Akiyoshi. All rights reserved.</p>
 		</footer>
+
+		<style is:global>
+			/* 方眼紙（ノート）パターンの背景 */
+			body {
+				background-color: #f8fafc;
+				background-image: 
+					linear-gradient(to right, #e2e8f0 1px, transparent 1px),
+					linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
+				background-size: 32px 32px;
+			}
+			.fade-in {
+				opacity: 0;
+				transform: translateY(30px);
+				transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+			}
+			.fade-in.is-visible {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		</style>
+
+		<script>
+			// ハンバーガーメニューとフェードインの制御
+			document.addEventListener('DOMContentLoaded', () => {
+				// ハンバーガーメニュー
+				const toggle = document.getElementById('menu-toggle');
+				const menu = document.getElementById('mobile-menu');
+				const links = document.querySelectorAll('.mobile-link');
+				
+				if(toggle && menu) {
+					toggle.addEventListener('click', () => {
+						menu.classList.toggle('hidden');
+					});
+					links.forEach(link => {
+						link.addEventListener('click', () => {
+							menu.classList.add('hidden');
+						});
+					});
+				}
+
+				// フェードイン
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('is-visible');
+							observer.unobserve(entry.target);
+						}
+					});
+				}, { rootMargin: '0px 0px -50px 0px' });
+
+				document.querySelectorAll('.fade-in').forEach(el => {
+					observer.observe(el);
+				});
+			});
+		</script>
 	</body>
-
-    <style is:global>
-        body {
-            background-color: #f8fafc;
-            background-image: 
-            linear-gradient(to right, #e2e8f0 1px, transparent 1px),
-            linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
-            background-size: 32px 32px; /* 方眼のサイズ */
-        }
-
-        /* 以下は既存のフェードインアニメーションのCSS（そのまま残します） */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .fade-in.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
-
-    <script>
-        // スクロールして画面に入った要素を検知するプログラム
-        document.addEventListener('DOMContentLoaded', () => {
-            const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target); // 一度表示されたら監視を解除（1回だけアニメーションさせる）
-                }
-            });
-            }, {
-            rootMargin: '0px 0px -50px 0px' // 画面の下から50px入ったところで発火
-            });
-
-            // 'fade-in' というクラスがついた要素をすべて監視する
-            document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-            });
-        });
-    </script>
 </html>

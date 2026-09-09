@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/WorkLayout.astro
 title: 著作権確認Webアプリ（複数人同期対応）
-category: Auto & Tool
+category: 自動化・ツール
 image: /images/works/copyright.png 
 summary: ブログの著作権確認業務を効率化するアプリ。Pythonから始まり、現在はGASを用いたWebアプリとして稼働中。
 ---

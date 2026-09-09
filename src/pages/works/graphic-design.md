@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/WorkLayout.astro
 title: グラフィック・ロゴデザイン制作
-category: Design & Video
+category: デザイン・動画
 image: /images/works/logo-design.png
 summary: 企業向けのバナー・ポスター制作から、コンペで評価されたドット絵やロゴデザインまで幅広く対応。
 ---
