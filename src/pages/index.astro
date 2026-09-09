@@ -1,120 +1,100 @@
 ---
-import { getCollection } from 'astro:content';
-
-const works = await getCollection('works');
-works.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
-
-// public/images/works/ 内の画像を全件自動検出
-const imageFiles = import.meta.glob('/public/images/works/*', { eager: true, query: '?url', import: 'default' });
-
-// 拡張子の違いを無視して一致する画像パスを返す関数
-function resolveImagePath(imagePath: string) {
-  const baseName = imagePath.split('/').pop()?.split('.')[0];
-  const matchedPath = Object.keys(imageFiles).find((path) => {
-    const fileBase = path.split('/').pop()?.split('.')[0];
-    return fileBase === baseName;
-  });
-  return matchedPath ? matchedPath.replace('/public', '') : imagePath;
-}
-
-// スキルセットデータ
-const skillCategories = [
-  {
-    title: 'Marketing & DX Strategy',
-    skills: ['Webマーケティング企画・運用', 'DX推進・業務プロセス改善', 'コンテンツプロデュース', 'アクセス解析']
-  },
-  {
-    title: 'Creative & Visual Design',
-    skills: ['動画編集・映像制作 (Premiere Pro / After Effects)', 'グラフィックデザイン (Illustrator / Photoshop)', 'ポスター・グラフィックツール制作']
-  },
-  {
-    title: 'Automation & Technology',
-    skills: ['Python (Webスクレイピング / タスク自動化)', 'Google Apps Script (GAS / 業務ツール開発)', 'Astro / HTML / CSS / JavaScript']
-  },
-  {
-    title: 'Craft & Fabrication',
-    skills: ['大型立体造形・プロップ制作', 'レザークラフト・カルトナージュ', 'ハンドクラフト・標本制作']
-  }
-];
+import Layout from '../layouts/Layout.astro';
+// worksフォルダの中にあるすべての .md ファイルのデータを自動取得する
+const allWorks = Object.values(import.meta.glob('./works/*.md', { eager: true }));
 ---
 
-<html lang="ja">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>秋吉 慧一 | Keiichi Akiyoshi Portfolio</title>
-  </head>
-  <body style="background-color: #fafafa; color: #333; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; margin: 0;">
-    <main style="max-width: 920px; margin: 0 auto; padding: 3rem 1.5rem;">
-      
-      <!-- Header -->
-      <header style="margin-bottom: 3.5rem; text-align: center;">
-        <h1 style="font-size: 2.6rem; margin-bottom: 0.4rem; letter-spacing: -0.02em;">秋吉 慧一</h1>
-        <p style="font-size: 1.1rem; color: #666; margin-top: 0; font-weight: 500;">Keiichi Akiyoshi</p>
-        <p style="font-size: 0.95rem; color: #888; max-width: 600px; margin: 1rem auto 0; line-height: 1.5;">
-          Web Marketing / DX Strategy / Video & Graphic Design / Automation & Craft
-        </p>
-      </header>
+<Layout title="秋吉 慧一 | DX推進 & インハウスクリエイター">
+	<!-- ヒーローセクション -->
+	<section class="px-6 py-20 max-w-5xl mx-auto md:flex items-center gap-12">
+		<div class="md:w-2/3">
+			<h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight mb-4">
+				秋吉 慧一 <br><span class="text-2xl md:text-3xl font-medium text-slate-500">Keiichi Akiyoshi</span>
+			</h1>
+			<p class="text-xl text-blue-600 mb-6 font-bold">
+				DX推進 & インハウスクリエイター
+			</p>
+			<p class="text-slate-600 leading-relaxed mb-8 text-lg">
+				泥臭い業務課題を、Python/GASによる「自動化プログラム」と、<br class="hidden md:block">
+				映像・デザインによる「クリエイティブ」の両面から解決します。
+			</p>
+		</div>
+	</section>
 
-      <!-- About Section -->
-      <section style="background: #fff; border: 1px solid #e5e5e5; border-radius: 12px; padding: 2rem; margin-bottom: 3rem; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
-        <h2 style="font-size: 1.4rem; margin-top: 0; margin-bottom: 1rem; border-bottom: 2px solid #222; padding-bottom: 0.4rem; display: inline-block;">About</h2>
-        <p style="font-size: 0.95rem; color: #444; line-height: 1.8; margin-bottom: 1rem;">
-          組織内のWebマーケティングおよびDX推進を担当し、広報コンテンツ（映像・デザイン）の企画制作から、PythonやGASを活用した現場業務の自動化ツールの開発・改善まで幅広く手掛けています。
-        </p>
-        <p style="font-size: 0.95rem; color: #444; line-height: 1.8; margin: 0;">
-          工学およびデザインのバックグラウンドを持ち、デジタルでの業務効率化やデザイン制作にとどまらず、大型立体プロップ制作やレザークラフトなど手技によるデジタル・フィジカル双方の造形表現にも意欲的に取り組んでいます。
-        </p>
-      </section>
+	<!-- About セクション -->
+	<section id="about" class="bg-white py-20 border-y border-slate-200">
+		<div class="max-w-5xl mx-auto px-6">
+			<h2 class="text-3xl font-bold mb-8 text-slate-900">About</h2>
+			<p class="text-slate-700 leading-loose text-lg">
+				現在の職場でインハウス（社内）クリエイター兼DX推進担当として活動しています。<br>
+				広報動画の制作やグラフィックデザインといったクリエイティブ業務に加え、現場の事務作業を効率化するためのWebアプリ開発（Python/GAS）や、生成AIを活用した業務改善を自社に導入しています。<br><br>
+				デジタル上のシステム構築だけでなく、物理的な立体造形（標本アートやカルトナージュ等）の経験も持ち、手段を問わず「課題を解決するためのモノづくり」を得意としています。
+			</p>
+		</div>
+	</section>
 
-      <!-- Skills Section -->
-      <section style="margin-bottom: 3.5rem;">
-        <h2 style="font-size: 1.4rem; margin-top: 0; margin-bottom: 1.5rem; border-bottom: 2px solid #222; padding-bottom: 0.4rem; display: inline-block;">Skills & Expertise</h2>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem;">
-          {skillCategories.map((category) => (
-            <div style="background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; padding: 1.25rem; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-              <h3 style="font-size: 1rem; margin-top: 0; margin-bottom: 0.8rem; color: #111; font-weight: 600;">{category.title}</h3>
-              <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.88rem; color: #555;">
-                {category.skills.map((skill) => (
-                  <li style="margin-bottom: 0.4rem;">{skill}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </section>
+	<!-- Skills セクション -->
+	<section id="skills" class="py-20">
+		<div class="max-w-5xl mx-auto px-6">
+			<h2 class="text-3xl font-bold mb-10 text-slate-900">Skills</h2>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+				<div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+					<h3 class="text-xl font-bold mb-3 text-blue-600">Auto & Tool (DX)</h3>
+					<ul class="list-disc list-inside text-slate-600 space-y-2">
+						<li>Python (業務自動化/アプリ開発)</li>
+						<li>Google Apps Script (GAS)</li>
+						<li>生成AI活用プロンプト設計</li>
+					</ul>
+				</div>
+				<div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+					<h3 class="text-xl font-bold mb-3 text-purple-600">Design & Video</h3>
+					<ul class="list-disc list-inside text-slate-600 space-y-2">
+						<li>動画編集 (Premiere/社内動画)</li>
+						<li>グラフィックデザイン</li>
+						<li>UI/UX (社内ツールの画面設計)</li>
+					</ul>
+				</div>
+				<div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+					<h3 class="text-xl font-bold mb-3 text-orange-600">Craft & Writing</h3>
+					<ul class="list-disc list-inside text-slate-600 space-y-2">
+						<li>ハンドクラフト (造形・標本等)</li>
+						<li>記事執筆・エッセイ</li>
+						<li>カルトナージュ</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
 
-      <!-- Works Section -->
-      <section>
-        <h2 style="font-size: 1.4rem; margin-top: 0; margin-bottom: 1.5rem; border-bottom: 2px solid #222; padding-bottom: 0.4rem; display: inline-block;">Works</h2>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.8rem;">
-          {works.map((work) => (
-            <article style="background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.03); transition: transform 0.2s ease;">
-              <img src={resolveImagePath(work.data.image)} alt={work.data.title} style="width: 100%; height: 190px; object-fit: cover;" />
-              <div style="padding: 1.25rem;">
-                <span style="font-size: 0.75rem; font-weight: 600; background: #f0f0f0; padding: 0.25rem 0.6rem; border-radius: 4px; color: #555;">{work.data.category}</span>
-                <h3 style="margin: 0.8rem 0 0.5rem; font-size: 1.1rem; line-height: 1.4;">
-                  <a href={`/works/${work.id}`} style="color: #111; text-decoration: none;">
-                    {work.data.title}
-                  </a>
-                </h3>
-                <p style="color: #666; font-size: 0.88rem; line-height: 1.5; margin-bottom: 1rem;">{work.description || work.data.description}</p>
-                <time style="font-size: 0.8rem; color: #999;">{work.data.date}</time>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <!-- Footer -->
-      <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #e5e5e5; text-align: center; color: #999; font-size: 0.85rem;">
-        <p>© {new Date().getFullYear()} Keiichi Akiyoshi. All rights reserved.</p>
-      </footer>
-
-    </main>
-  </body>
-</html>
+	<!-- Works セクション -->
+	<section id="works" class="py-20 bg-slate-50 border-t border-slate-200">
+		<div class="max-w-5xl mx-auto px-6">
+			<h2 class="text-3xl font-bold mb-10 text-slate-900">Works</h2>
+			
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				{allWorks.map((work: any) => (
+					<a href={work.url} class="group block bg-white rounded-2xl overflow-hidden hover:shadow-xl transition duration-300 border border-slate-100 flex flex-col h-full">
+						<div class="h-52 bg-slate-200 overflow-hidden relative">
+							{work.frontmatter.image ? (
+								<img src={work.frontmatter.image} alt={work.frontmatter.title} class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+							) : (
+								<div class="w-full h-full flex items-center justify-center text-slate-400 bg-slate-100">No Image</div>
+							)}
+							<span class="absolute top-4 left-4 bg-slate-900/90 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
+								{work.frontmatter.category}
+							</span>
+						</div>
+						<div class="p-6 flex flex-col flex-grow">
+							<h3 class="text-lg font-bold mb-3 text-slate-900 group-hover:text-blue-600 transition leading-tight">
+								{work.frontmatter.title}
+							</h3>
+							<p class="text-slate-600 text-sm flex-grow leading-relaxed">
+								{work.frontmatter.summary}
+							</p>
+						</div>
+					</a>
+				))}
+			</div>
+		</div>
+	</section>
+</Layout>
