@@ -76,7 +76,10 @@ const allWorks = Object.values(import.meta.glob('./works/*.md', { eager: true })
 					<a href={work.url} class="group block bg-white rounded-2xl overflow-hidden hover:shadow-xl transition duration-300 border border-slate-100 flex flex-col h-full">
 						<div class="h-52 bg-slate-200 overflow-hidden relative">
 							{work.frontmatter.image ? (
-								<img src={work.frontmatter.image} alt={work.frontmatter.title} class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async" />
+								<picture>
+									<source srcset={work.frontmatter.image.replace(/\.(png|jpe?g)$/i, '.avif')} type="image/avif" />
+									<img src={work.frontmatter.image} alt={work.frontmatter.title} class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async" />
+								</picture>
 							) : (
 								<div class="w-full h-full flex items-center justify-center text-slate-400 bg-slate-100">No Image</div>
 							)}

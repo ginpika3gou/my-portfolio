@@ -16,13 +16,16 @@ const { frontmatter } = Astro.props;
     </div>
 
     {frontmatter.image && (
-      <img 
-        src={frontmatter.image} 
-        alt={frontmatter.title} 
-        class="w-full h-auto rounded-xl mb-12 object-cover" 
-        loading="lazy" 
-        decoding="async"
-      />
+      <picture>
+        <source srcset={frontmatter.image.replace(/\.(png|jpe?g)$/i, '.avif')} type="image/avif" />
+        <img 
+          src={frontmatter.image} 
+          alt={frontmatter.title} 
+          class="w-full h-auto rounded-xl mb-12 object-cover" 
+          loading="lazy" 
+          decoding="async"
+        />
+      </picture>
     )}
 
     <!-- 本文が入る部分 -->
