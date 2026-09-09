@@ -9,7 +9,7 @@ const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="ja" class="scroll-smooth">
+<html lang="ja" class="scroll-smooth bg-slate-50">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -40,4 +40,39 @@ const { title } = Astro.props;
 			<p>&copy; {new Date().getFullYear()} Keiichi Akiyoshi. All rights reserved.</p>
 		</footer>
 	</body>
+
+    <style is:global>
+        /* フワッと浮き上がるアニメーションの準備 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        /* 画面に入ったときに適用されるクラス */
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+
+    <script>
+        // スクロールして画面に入った要素を検知するプログラム
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // 一度表示されたら監視を解除（1回だけアニメーションさせる）
+                }
+            });
+            }, {
+            rootMargin: '0px 0px -50px 0px' // 画面の下から50px入ったところで発火
+            });
+
+            // 'fade-in' というクラスがついた要素をすべて監視する
+            document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+            });
+        });
+    </script>
 </html>

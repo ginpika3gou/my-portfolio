@@ -6,7 +6,7 @@ const allWorks = Object.values(import.meta.glob('./works/*.md', { eager: true })
 
 <Layout title="秋吉 慧一 | DX推進 & インハウスクリエイター">
 	<!-- ヒーローセクション -->
-	<section class="px-6 py-20 max-w-5xl mx-auto md:flex items-center gap-12">
+	<section class="fade-in px-6 py-20 max-w-5xl mx-auto md:flex items-center gap-12">
 		<div class="md:w-2/3">
 			<h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight mb-4">
 				秋吉 慧一 <br><span class="text-2xl md:text-3xl font-medium text-slate-500">Keiichi Akiyoshi</span>
@@ -22,7 +22,7 @@ const allWorks = Object.values(import.meta.glob('./works/*.md', { eager: true })
 	</section>
 
 	<!-- About セクション -->
-	<section id="about" class="bg-white py-20 border-y border-slate-200">
+	<section id="about" class="fade-in "bg-white py-20 border-y border-slate-200">
 		<div class="max-w-5xl mx-auto px-6">
 			<h2 class="text-3xl font-bold mb-8 text-slate-900">About</h2>
 			<p class="text-slate-700 leading-loose text-lg">
@@ -34,7 +34,7 @@ const allWorks = Object.values(import.meta.glob('./works/*.md', { eager: true })
 	</section>
 
 	<!-- Skills セクション -->
-	<section id="skills" class="py-20">
+	<section id="skills" class="fade-in py-20">
 		<div class="max-w-5xl mx-auto px-6">
 			<h2 class="text-3xl font-bold mb-10 text-slate-900">Skills</h2>
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -67,13 +67,13 @@ const allWorks = Object.values(import.meta.glob('./works/*.md', { eager: true })
 	</section>
 
 	<!-- Works セクション -->
-	<section id="works" class="py-20 bg-slate-50 border-t border-slate-200">
+	<section id="works" class="fade-in py-20 bg-slate-50 border-t border-slate-200">
 		<div class="max-w-5xl mx-auto px-6">
 			<h2 class="text-3xl font-bold mb-10 text-slate-900">Works</h2>
 			
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 				{allWorks.map((work: any) => (
-					<a href={work.url} class="group block bg-white rounded-2xl overflow-hidden hover:shadow-xl transition duration-300 border border-slate-100 flex flex-col h-full">
+					<a href={work.url} class="fade-in group block bg-white rounded-2xl overflow-hidden hover:shadow-xl transition duration-300 border border-slate-100 flex flex-col h-full">
 						<div class="h-52 bg-slate-200 overflow-hidden relative">
 							{work.frontmatter.image ? (
 								<picture>
