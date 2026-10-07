@@ -18,7 +18,7 @@ summary: 蝶の実寸大アートを制作しメルカリで完売。さらに�
 
 <!-- 👇 YouTube埋め込み 👇 -->
 <div class="relative w-full overflow-hidden pt-[56.25%] rounded-lg shadow-md border border-slate-200 my-6">
-  <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/-g_W5PGAnZk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/-g_W5PGAnZk?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 <!-- 👆 ここまで 👆 -->
 
