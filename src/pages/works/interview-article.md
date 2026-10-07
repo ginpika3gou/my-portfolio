@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/WorkLayout.astro
-title: 芸術家インタビュー記事（前・後編）
+title: 芸術家へのインタビュー記事
 category: 記事執筆・エッセイ
 image: /images/works/interview-thumbnail.png
 summary: ある芸術家の方の初個展開催にあたり、ご縁があって担当させていただいたインタビュー記事です。対象者の魅力を引き出し、前後編にまとめました。
