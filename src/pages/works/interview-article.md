@@ -3,7 +3,7 @@ layout: ../../layouts/WorkLayout.astro
 title: 芸術家インタビュー記事（前・後編）
 category: 記事執筆・エッセイ
 image: /images/works/interview-thumbnail.png
-summary: 芸術家・松本緑氏へのインタビュー記事。対象者の魅力を引き出し、ストーリー性のあるテキストコンテンツとして前後編にまとめました。
+summary: 芸術家・XXX氏へのインタビュー記事。対象者の魅力を引き出し、ストーリー性のあるテキストコンテンツとして前後編にまとめました。
 ---
 
 ## プロジェクトの概要
