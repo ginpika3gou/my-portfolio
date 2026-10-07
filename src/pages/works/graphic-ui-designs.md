@@ -16,10 +16,15 @@ summary: ポスター、カレンダーなどのグラフィックデザイン�
 社内で使用する業務改善アプリのUI画面です。親しみやすいイラストやゲーミフィケーション要素を取り入れ、日々の業務打刻やタスク管理が楽しくなるような設計を行いました。
 
 ![アプリUIデザイン1](/images/works/ui-app1.avif)
+
 ![アプリUIデザイン2](/images/works/ui-app2.avif)
+
 ![アプリUIデザイン3](/images/works/ui-app3.avif)
+
 ![アプリUIデザイン4](/images/works/ui-app4.avif)
+
 ![アプリUIデザイン5](/images/works/ui-app5.avif)
+
 ![アプリUIデザイン6](/images/works/ui-app6.avif)
 
 ---

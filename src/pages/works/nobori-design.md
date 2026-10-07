@@ -16,5 +16,7 @@ summary: 地域交流スペースを周知するための「のぼり」デザ�
 遠くからでも視認性が高くなるよう、文字のジャンプ率（大小のメリハリ）や余白を調整しています。また、実際の施設エントランスの雰囲気に調和するよう意識してデザインしました。
 
 ![のぼり完成稿](/images/works/nobori-design.avif)
+
 ![実際の設置風景](/images/works/nobori-photo.avif)
+
 ![エントランスへの設置モックアップ](/images/works/nobori-mockup.avif)
