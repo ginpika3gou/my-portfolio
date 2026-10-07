@@ -25,7 +25,7 @@ summary: 蝶の実寸大アートを制作しメルカリで完売。さらに�
 ### テキストコンテンツ（短編小説）
 この蝶のアートをモチーフにした短編小説を執筆し、noteに投稿しています。
 
-<a href="https://note.com/so_you_koto/n/n0ea3fa3db434" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 !text-white no-underline text-sm font-bold rounded-full hover:bg-slate-700 transition my-4">
+<a href="https://note.com/so_you_koto/n/n0ea3fa3db434" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 !text-white !no-underline text-sm font-bold rounded-full hover:bg-slate-700 transition my-4">
   <span>noteで短編小説を読む</span>
   <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
