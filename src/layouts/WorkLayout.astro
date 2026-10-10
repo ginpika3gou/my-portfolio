@@ -1,53 +1,160 @@
 ---
-import Layout from './Layout.astro';
-const { frontmatter } = Astro.props;
+import '../styles/global.css';
+
+export interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
 ---
 
-<Layout title={`${frontmatter.title} | Keiichi Akiyoshi`}>
-  <article class="max-w-3xl mx-auto px-6 py-24">
-    <!-- ヘッダー部分（タイトルや画像） -->
-    <div class="mb-10 text-center">
-      <span class="bg-blue-100 text-blue-800 text-sm font-bold px-4 py-1.5 rounded-full">
-        {frontmatter.category}
-      </span>
-      <h1 class="text-3xl md:text-4xl font-extrabold mt-6 mb-4 text-slate-900 leading-tight">
-        {frontmatter.title}
-      </h1>
-    </div>
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth bg-slate-50">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+    </head>
+    <body class="text-slate-800 font-sans antialiased">
+        
+        <!-- ヘッダー -->
+        <header class="fixed w-full bg-white/80 backdrop-blur-md shadow-sm z-50 transition-all">
+            <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="/" class="text-xl font-bold tracking-widest text-slate-900">AKIYOSHI KEIICHI</a>
+                
+                <!-- PC用メニュー -->
+                <nav class="hidden md:flex gap-6 text-sm font-bold text-slate-600">
+                    <a href="/#about" class="hover:text-blue-600 transition">About <span class="text-xs font-normal text-slate-400 ml-1">私について</span></a>
+                    <a href="/#skills" class="hover:text-blue-600 transition">Skills <span class="text-xs font-normal text-slate-400 ml-1">スキル</span></a>
+                    <a href="/#works" class="hover:text-blue-600 transition">Works <span class="text-xs font-normal text-slate-400 ml-1">実績</span></a>
+                    <a href="/#contact" class="hover:text-blue-600 transition">Contact <span class="text-xs font-normal text-slate-400 ml-1">お問い合わせ</span></a>
+                </nav>
 
-    {frontmatter.image && (
-      <picture>
-        <source srcset={frontmatter.image.replace(/\.(png|jpe?g)$/i, '.avif')} type="image/avif" />
-        <img 
-          src={frontmatter.image} 
-          alt={frontmatter.title} 
-          class="w-full h-auto rounded-xl mb-12 object-cover" 
-          loading="lazy" 
-          decoding="async"
-        />
-      </picture>
-    )}
+                <!-- スマホ用ハンバーガーボタン -->
+                <button id="menu-toggle" class="md:hidden w-8 h-8 flex flex-col justify-center items-center gap-[5px] p-1 focus:outline-none cursor-pointer">
+                    <span id="line-top" class="block w-6 h-[2px] bg-slate-700 transition-transform duration-300 ease-in-out"></span>
+                    <span id="line-mid" class="block w-6 h-[2px] bg-slate-700 transition-opacity duration-300 ease-in-out"></span>
+                    <span id="line-bot" class="block w-6 h-[2px] bg-slate-700 transition-transform duration-300 ease-in-out"></span>
+                </button>
+            </div>
 
-    <!-- 本文が入る部分 -->
-    <div class="work-content">
-      <slot />
-    </div>
+            <!-- スマホ用ドロップダウンメニュー -->
+            <!-- ※hiddenクラスを外し、代わりにCSSで制御します -->
+            <nav id="mobile-menu" class="md:hidden bg-white/95 backdrop-blur-md border-t border-slate-100 shadow-lg absolute w-full left-0">
+                <div class="flex flex-col px-6 py-4 gap-4 text-sm font-bold text-slate-600">
+                    <a href="/#about" class="mobile-link hover:text-blue-600">About <span class="text-xs font-normal text-slate-400">私について</span></a>
+                    <a href="/#skills" class="mobile-link hover:text-blue-600">Skills <span class="text-xs font-normal text-slate-400">スキル</span></a>
+                    <a href="/#works" class="mobile-link hover:text-blue-600">Works <span class="text-xs font-normal text-slate-400">実績</span></a>
+                    <a href="/#contact" class="mobile-link hover:text-blue-600">Contact <span class="text-xs font-normal text-slate-400">お問い合わせ</span></a>
+                </div>
+            </nav>
+        </header>
 
-    <div class="mt-20 text-center border-t border-slate-200 pt-8">
-      <a href="/#works" class="inline-block bg-slate-900 text-white px-8 py-3 rounded-lg font-medium hover:bg-slate-800 transition">
-        ← Works一覧へ戻る
-      </a>
-    </div>
-  </article>
-</Layout>
+        <!-- ページの中身 -->
+        <main class="pt-24 pb-12 min-h-screen">
+            <slot />
+        </main>
 
-<style is:global>
-  /* Markdown本文のデザイン設定 */
-  .work-content h2 { font-size: 1.5rem; font-weight: 700; color: #0f172a; margin-top: 3rem; margin-bottom: 1rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; }
-  .work-content h3 { font-size: 1.25rem; font-weight: 700; color: #334155; margin-top: 2rem; margin-bottom: 1rem; }
-  .work-content p { color: #475569; margin-bottom: 1.5rem; line-height: 1.8; }
-  .work-content ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #475569; }
-  .work-content li { margin-bottom: 0.5rem; }
-  .work-content a { color: #2563eb; text-decoration: underline; }
-  .work-content strong { color: #0f172a; font-weight: 700; }
-</style>
+        <!-- フッター -->
+        <footer id="contact" class="bg-slate-900 py-10 text-center text-slate-400 text-sm scroll-mt-20">
+            <div class="max-w-xl mx-auto px-6 mb-8">
+                <h4 class="text-white font-bold text-lg mb-4">お問い合わせ</h4>
+                <p class="mb-4 text-slate-300">制作のご依頼やご相談を承っております。</p>
+                <a href="https://forms.gle/Ry5zSSjjdHqYugRK8" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-full transition shadow-lg">
+                    お問い合わせフォーム
+                </a>
+            </div>
+            <p>&copy; {new Date().getFullYear()} Keiichi Akiyoshi. All rights reserved.</p>
+        </footer>
+
+        <style is:global>
+            /* 方眼紙（ノート）パターンの背景 */
+            body {
+                background-color: #f8fafc;
+                background-image: 
+                    linear-gradient(to right, #e2e8f0 1px, transparent 1px),
+                    linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
+                background-size: 32px 32px;
+            }
+
+            /* --- スマホメニューの開閉アニメーション制御 --- */
+            /* 閉じた状態（即座に消える） */
+            #mobile-menu {
+                opacity: 0;
+                visibility: hidden;
+                /* transitionを0秒にすることで、クラスが外れた瞬間にパッと消えます */
+                transition: opacity 0s, visibility 0s;
+            }
+
+            /* 開いた状態（少し遅れてフワッと表示） */
+            #mobile-menu.is-open {
+                opacity: 1;
+                visibility: visible;
+                /* ease-in-outの後ろの「0.15s」が遅延時間です。アイコンが変形し始めてからメニューを表示させます */
+                transition: opacity 0.3s ease-in-out 0.15s, visibility 0s 0.15s;
+            }
+
+            /* ハンバーガーアイコンのアニメーション設定 */
+            #menu-toggle.is-open #line-top {
+                transform: translateY(7px) rotate(45deg);
+            }
+            #menu-toggle.is-open #line-mid {
+                opacity: 0;
+            }
+            #menu-toggle.is-open #line-bot {
+                transform: translateY(-7px) rotate(-45deg);
+            }
+
+            .fade-in {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .fade-in.is-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        </style>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                // ハンバーガーメニュー
+                const toggle = document.getElementById('menu-toggle');
+                const menu = document.getElementById('mobile-menu');
+                const links = document.querySelectorAll('.mobile-link');
+                
+                if(toggle && menu) {
+                    toggle.addEventListener('click', () => {
+                        // is-openクラスを付け外ししてアニメーションを発動
+                        menu.classList.toggle('is-open'); 
+                        toggle.classList.toggle('is-open'); 
+                    });
+
+                    links.forEach(link => {
+                        link.addEventListener('click', () => {
+                            // リンククリック時はis-openを外して即座に閉じる
+                            menu.classList.remove('is-open');
+                            toggle.classList.remove('is-open'); 
+                        });
+                    });
+                }
+
+                // フェードイン
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { rootMargin: '0px 0px -50px 0px' });
+
+                document.querySelectorAll('.fade-in').forEach(el => {
+                    observer.observe(el);
+                });
+            });
+        </script>
+    </body>
+</html>
