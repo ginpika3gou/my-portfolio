@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/WorkLayout.astro
-title: 展覧会スタッフ インタビュー記事（Q&A形式）
+title: 展覧会スタッフへのインタビュー記事
 category: 記事執筆・エッセイ
 image: /images/works/staff-interview-thumbnail.png
 summary: 芸術家の個展開催を裏で支えたスタッフ2名へのインタビュー記事。対象者の役割に合わせ、Q&A形式で「陰の立役者の物語」として執筆しました。
