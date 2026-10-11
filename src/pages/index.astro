@@ -121,7 +121,7 @@ const featuredWorks = allWorks.filter((work: any) => work.frontmatter.image).sli
 					</div>
 					<h3 class="text-xl font-bold mb-3 text-slate-900">デザイン・動画</h3>
 					<ul class="list-disc list-inside text-slate-600 space-y-2 text-sm">
-						<li>動画制作 (Premiere Pro / After Effects)</li>
+						<li>動画制作 (Premiere Pro / After Effects / CapCut)</li>
 						<li>デザイン (Illustrator / Photoshop / Affinity)</li>
 						<li>資料・UI設計 (Canva 等)</li>
 					</ul>
@@ -153,101 +153,103 @@ const featuredWorks = allWorks.filter((work: any) => work.frontmatter.image).sli
 			
 			<!-- タグメニュー（初期状態のデザインを統一） -->
 			<div class="flex flex-wrap gap-3 mb-10">
-				<button class="filter-btn px-5 py-2 rounded-full font-bold text-sm bg-slate-900 text-white border border-slate-900 hover:bg-slate-800 transition" data-filter="all">すべて</button>
-				<button class="filter-btn px-5 py-2 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition" data-filter="自動化・ツール">自動化・ツール</button>
-				<button class="filter-btn px-5 py-2 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition" data-filter="デザイン・動画">デザイン・動画</button>
-				<button class="filter-btn px-5 py-2 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition" data-filter="造形・クラフト">造形・クラフト</button>
-			</div>
+                <button class="filter-btn px-5 py-2 rounded-full font-bold text-sm bg-slate-900 text-white border border-slate-900 hover:bg-slate-800 transition" data-filter="all">すべて</button>
+                <button class="filter-btn px-5 py-2 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition" data-filter="自動化・ツール">自動化・ツール</button>
+                <button class="filter-btn px-5 py-2 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition" data-filter="デザイン・動画">デザイン・動画</button>
+                <button class="filter-btn px-5 py-2 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition" data-filter="造形・クラフト">造形・クラフト</button>
+                <button class="filter-btn px-5 py-2 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition" data-filter="記事執筆・エッセイ">記事執筆・エッセイ</button>
+            </div>
 			
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-4">
-				{allWorks.map((work: any) => (
-					<a href={work.url} data-category={work.frontmatter.category} class="work-card fade-in group relative bg-white p-3 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-2 hover:-rotate-1 transition duration-300 border border-slate-200 flex flex-col h-full">
-						<div class="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-7 bg-amber-200/60 backdrop-blur-sm rotate-[-3deg] z-10 shadow-sm border border-white/40"></div>
-						<div class="h-52 bg-slate-200 overflow-hidden relative rounded border border-slate-100">
-							{work.frontmatter.image ? (
-								<picture>
-									<source srcset={work.frontmatter.image.replace(/\.(png|jpe?g)$/i, '.avif')} type="image/avif" />
-									<img src={work.frontmatter.image} alt={work.frontmatter.title} class="w-full h-full object-cover group-hover:scale-105 transition duration-700" loading="lazy" decoding="async" />
-								</picture>
-							) : (
-								<div class="w-full h-full flex items-center justify-center text-slate-400 bg-slate-50">No Image</div>
-							)}
-							<span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded shadow-sm">
-								{work.frontmatter.category}
-							</span>
-						</div>
-						<div class="pt-5 pb-3 px-2 flex flex-col flex-grow">
-							<h3 class="text-lg font-bold mb-3 text-slate-900 group-hover:text-blue-600 transition leading-tight">
-								{work.frontmatter.title}
-							</h3>
-							<p class="text-slate-600 text-sm flex-grow leading-relaxed">
-								{work.frontmatter.summary}
-							</p>
-						</div>
-					</a>
-				))}
-			</div>
+			<div class="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 pt-4">
+                {allWorks.map((work: any) => (
+                    <a href={work.url} data-category={work.frontmatter.category} class="work-card fade-in group relative bg-white p-2 md:p-3 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-2 hover:-rotate-1 transition duration-300 border border-slate-200 flex flex-col h-full">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-16 md:w-24 h-5 md:h-7 bg-amber-200/60 backdrop-blur-sm rotate-[-3deg] z-10 shadow-sm border border-white/40"></div>
+                        <div class="h-32 md:h-52 bg-slate-200 overflow-hidden relative rounded border border-slate-100">
+                            {work.frontmatter.image ? (
+                                <picture>
+                                    <source srcset={work.frontmatter.image.replace(/\.(png|jpe?g)$/i, '.avif')} type="image/avif" />
+                                    <img src={work.frontmatter.image} alt={work.frontmatter.title} class="w-full h-full object-cover group-hover:scale-105 transition duration-700" loading="lazy" decoding="async" />
+                                </picture>
+                            ) : (
+                                <div class="w-full h-full flex items-center justify-center text-slate-400 bg-slate-50 text-xs md:text-base">No Image</div>
+                            )}
+                            <span class="absolute top-2 left-2 md:top-3 md:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[10px] md:text-xs font-bold px-2 md:px-3 py-1 md:py-1.5 rounded shadow-sm">
+                                {work.frontmatter.category}
+                            </span>
+                        </div>
+                        <div class="pt-3 md:pt-5 pb-2 md:pb-3 px-1 md:px-2 flex flex-col flex-grow">
+                            <h3 class="text-sm md:text-lg font-bold mb-2 md:mb-3 text-slate-900 group-hover:text-blue-600 transition leading-tight">
+                                {work.frontmatter.title}
+                            </h3>
+                            <p class="text-slate-600 text-xs md:text-sm flex-grow leading-relaxed line-clamp-3 md:line-clamp-none">
+                                {work.frontmatter.summary}
+                            </p>
+                        </div>
+                    </a>
+                ))}
+            </div>
 		</div>
 	</section>
 
 	<script>
-		document.addEventListener('DOMContentLoaded', () => {
-			const carouselItems = document.querySelectorAll('.carousel-item');
-			if (carouselItems.length > 1) {
-				let currentIndex = 0;
-				setInterval(() => {
-					// 今の画像を隠す
-					carouselItems[currentIndex].classList.replace('opacity-100', 'opacity-0');
-					carouselItems[currentIndex].classList.replace('z-10', 'z-0');
-					carouselItems[currentIndex].classList.replace('pointer-events-auto', 'pointer-events-none');
-					
-					// 次の画像のインデックスを計算
-					currentIndex = (currentIndex + 1) % carouselItems.length;
-					
-					// 次の画像を表示する
-					carouselItems[currentIndex].classList.replace('opacity-0', 'opacity-100');
-					carouselItems[currentIndex].classList.replace('z-0', 'z-10');
-					carouselItems[currentIndex].classList.replace('pointer-events-none', 'pointer-events-auto');
-				}, 4000); // 4秒（4000ミリ秒）ごとに切り替え
-			}
+        document.addEventListener('DOMContentLoaded', () => {
+            const carouselItems = document.querySelectorAll('.carousel-item');
+            if (carouselItems.length > 1) {
+                let currentIndex = 0;
+                setInterval(() => {
+                    carouselItems[currentIndex].classList.replace('opacity-100', 'opacity-0');
+                    carouselItems[currentIndex].classList.replace('z-10', 'z-0');
+                    carouselItems[currentIndex].classList.replace('pointer-events-auto', 'pointer-events-none');
+                    
+                    currentIndex = (currentIndex + 1) % carouselItems.length;
+                    
+                    carouselItems[currentIndex].classList.replace('opacity-0', 'opacity-100');
+                    carouselItems[currentIndex].classList.replace('z-0', 'z-10');
+                    carouselItems[currentIndex].classList.replace('pointer-events-none', 'pointer-events-auto');
+                }, 4000);
+            }
 
-			const skillCards = document.querySelectorAll('.skill-card');
-			const workCards = document.querySelectorAll('.work-card');
-			const filterBtns = document.querySelectorAll('.filter-btn');
+            const skillCards = document.querySelectorAll('.skill-card');
+            const workCards = document.querySelectorAll('.work-card');
+            const filterBtns = document.querySelectorAll('.filter-btn');
 
-			function applyFilter(filterKeyword) {
-				workCards.forEach(card => {
-					const category = card.getAttribute('data-category') || '';
-					if (filterKeyword === 'all' || category.includes(filterKeyword)) {
-						card.style.display = 'flex';
-					} else {
-						card.style.display = 'none';
-					}
-				});
-				
-				// ボタンのデザイン（枠線やホバー色）を切り替え
-				filterBtns.forEach(btn => {
-					if (btn.getAttribute('data-filter') === filterKeyword) {
-						btn.className = 'filter-btn px-5 py-2 rounded-full font-bold text-sm transition bg-slate-900 text-white border border-slate-900 hover:bg-slate-800';
-					} else {
-						btn.className = 'filter-btn px-5 py-2 rounded-full font-bold text-sm transition bg-white text-slate-600 border border-slate-200 hover:bg-slate-50';
-					}
-				});
-			}
+            // 修正1：引数が「文字列（または空）」であることを明示
+            function applyFilter(filterKeyword: string | null) {
+                workCards.forEach(c => {
+                    // 修正2：HTML要素として明示し、styleエラーを解消
+                    const card = c as HTMLElement;
+                    const category = card.getAttribute('data-category') || '';
+                    if (filterKeyword === 'all' || (filterKeyword && category.includes(filterKeyword))) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                filterBtns.forEach(btn => {
+                    if (btn.getAttribute('data-filter') === filterKeyword) {
+                        btn.className = 'filter-btn px-5 py-2 rounded-full font-bold text-sm transition bg-slate-900 text-white border border-slate-900 hover:bg-slate-800';
+                    } else {
+                        btn.className = 'filter-btn px-5 py-2 rounded-full font-bold text-sm transition bg-white text-slate-600 border border-slate-200 hover:bg-slate-50';
+                    }
+                });
+            }
 
-			skillCards.forEach(card => {
-				card.addEventListener('click', () => {
-					const target = card.getAttribute('data-filter-target');
-					applyFilter(target);
-					document.getElementById('works').scrollIntoView({ behavior: 'smooth' });
-				});
-			});
+            skillCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const target = card.getAttribute('data-filter-target');
+                    applyFilter(target);
+                    // 修正3：「?」を付けて、もしIDが見つからなかった場合のnullエラーを回避
+                    document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
 
-			filterBtns.forEach(btn => {
-				btn.addEventListener('click', () => {
-					applyFilter(btn.getAttribute('data-filter'));
-				});
-			});
-		});
-	</script>
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // 修正4：属性が取得できなかった場合の保険として 'all' を設定
+                    applyFilter(btn.getAttribute('data-filter') || 'all');
+                });
+            });
+        });
+    </script>
 </Layout>
