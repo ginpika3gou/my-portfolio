@@ -15,17 +15,35 @@ summary: ポスター、カレンダーなどのグラフィックデザイン�
 ### 業務改善アプリ UIデザイン
 社内で使用する業務改善アプリのUI画面です。親しみやすいイラストやゲーミフィケーション要素を取り入れ、日々の業務打刻やタスク管理が楽しくなるような設計を行いました。
 
-![アプリUIデザイン1](/images/works/ui-app1.avif)
+<!-- ▼ スワイプ可能な画像ギャラリー ▼ -->
+<div class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-6 mb-8 mt-6">
+  
+  <div class="snap-center shrink-0 w-[80%] md:w-[45%] flex items-center justify-center">
+    <img src="/images/works/ui-app1.avif" alt="アプリUIデザイン1" class="!my-0 !w-full !max-h-[60vh] object-contain" />
+  </div>
 
-![アプリUIデザイン2](/images/works/ui-app2.avif)
+  <div class="snap-center shrink-0 w-[80%] md:w-[45%] flex items-center justify-center">
+    <img src="/images/works/ui-app2.avif" alt="アプリUIデザイン2" class="!my-0 !w-full !max-h-[60vh] object-contain" />
+  </div>
 
-![アプリUIデザイン3](/images/works/ui-app3.avif)
+  <div class="snap-center shrink-0 w-[80%] md:w-[45%] flex items-center justify-center">
+    <img src="/images/works/ui-app3.avif" alt="アプリUIデザイン3" class="!my-0 !w-full !max-h-[60vh] object-contain" />
+  </div>
 
-![アプリUIデザイン4](/images/works/ui-app4.avif)
+  <div class="snap-center shrink-0 w-[80%] md:w-[45%] flex items-center justify-center">
+    <img src="/images/works/ui-app4.avif" alt="アプリUIデザイン4" class="!my-0 !w-full !max-h-[60vh] object-contain" />
+  </div>
 
-![アプリUIデザイン5](/images/works/ui-app5.avif)
+  <div class="snap-center shrink-0 w-[80%] md:w-[45%] flex items-center justify-center">
+    <img src="/images/works/ui-app5.avif" alt="アプリUIデザイン5" class="!my-0 !w-full !max-h-[60vh] object-contain" />
+  </div>
 
-![アプリUIデザイン6](/images/works/ui-app6.avif)
+  <div class="snap-center shrink-0 w-[80%] md:w-[45%] flex items-center justify-center">
+    <img src="/images/works/ui-app6.avif" alt="アプリUIデザイン6" class="!my-0 !w-full !max-h-[60vh] object-contain" />
+  </div>
+
+</div>
+<!-- ▲ ここまで ▲ -->
 
 ---
 
