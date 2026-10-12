@@ -15,7 +15,23 @@ const { title } = Astro.props;
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
+        
+        <!-- 基本のタイトルと説明文 -->
         <title>{title}</title>
+        <meta name="description" content="DX推進とクリエイティブの両面から課題を解決するインハウスクリエイター秋吉慧一のポートフォリオサイトです。Python/GASによる自動化開発から動画・デザイン・造形作品まで掲載。" />
+
+        <!-- OGP（SNS共有用の設定） -->
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content="DX推進とクリエイティブの両面から課題を解決するインハウスクリエイター秋吉慧一のポートフォリオサイトです。" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://akiyoshi-keiichi.pages.dev/" />
+        <meta property="og:image" content="https://akiyoshi-keiichi.pages.dev/images/ogp-image.webp" />
+
+        <!-- X（旧Twitter）用カード設定 -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content="DX推進とクリエイティブの両面から課題を解決するインハウスクリエイター秋吉慧一のポートフォリオサイトです。" />
+        <meta name="twitter:image" content="https://akiyoshi-keiichi.pages.dev/images/ogp-image.webp" />
     </head>
     <body class="text-slate-800 font-sans antialiased">
         
