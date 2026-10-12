@@ -6,161 +6,62 @@ const featuredWorks = allWorks.filter((work: any) => work.frontmatter.image).sli
 ---
 
 <Layout title="秋吉 慧一 ｜ DX推進 & インハウスクリエイター">
-	<!-- ヒーローセクション -->
-	<section class="fade-in px-6 py-20 max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12 mt-4">
-		<!-- 左側：テキスト -->
-		<div class="md:w-1/2 w-full">
-			<h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight mb-4">
-				秋吉 慧一 <br><span class="text-2xl md:text-3xl font-medium text-slate-500 tracking-wider">AKIYOSHI KEIICHI</span>
-			</h1>
-			<p class="text-xl text-blue-600 mb-6 font-bold">
-				DX推進 & インハウスクリエイター
-			</p>
-			<p class="text-slate-600 leading-relaxed mb-8 text-lg">
-				泥臭い業務課題を、Python/GASによる「自動化プログラム」と、<br class="hidden md:block">
-				映像・デザインによる「クリエイティブ」の両面から解決します。
-			</p>
-		</div>
+    <!-- ヒーローセクション -->
+    <section class="fade-in px-6 py-20 max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12 mt-4">
+        <!-- 左側：テキスト -->
+        <div class="md:w-1/2 w-full">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight mb-4">
+                秋吉 慧一 <br><span class="text-2xl md:text-3xl font-medium text-slate-500 tracking-wider">AKIYOSHI KEIICHI</span>
+            </h1>
+            <p class="text-xl text-blue-600 mb-6 font-bold">
+                DX推進 & インハウスクリエイター
+            </p>
+            <p class="text-slate-600 leading-relaxed mb-8 text-lg">
+                泥臭い業務課題を、Python/GASによる「自動化プログラム」と、<br class="hidden md:block">
+                映像・デザインによる「クリエイティブ」の両面から解決します。
+            </p>
+        </div>
 
-		<!-- 右側：スクラップブック風 動く写真立て（カルーセル） -->
-		<div class="md:w-1/2 w-full relative h-[300px] md:h-[350px]">
-			<!-- マスキングテープ装飾 -->
-			<div class="absolute -top-3 right-12 w-28 h-8 bg-amber-200/60 backdrop-blur-sm rotate-[5deg] z-20 shadow-sm border border-white/40"></div>
-			
-			<div class="relative w-full h-full bg-white p-3 rounded-lg shadow-xl border border-slate-200 rotate-[-2deg] hover:rotate-0 hover:-translate-y-1 transition duration-500">
-				{featuredWorks.map((work: any, index: number) => (
-					<a href={work.url} 
-					   class={`carousel-item absolute inset-3 transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100 z-10 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'}`}>
-						<picture>
-							<source srcset={work.frontmatter.image.replace(/\.(png|jpe?g)$/i, '.avif')} type="image/avif" />
-							<img src={work.frontmatter.image} alt={work.frontmatter.title} class="w-full h-full object-cover rounded border border-slate-100" loading={index === 0 ? "eager" : "lazy"} decoding="async" />
-						</picture>
-						<div class="absolute bottom-3 left-3 right-3 bg-slate-900/80 backdrop-blur-md text-white p-3 rounded shadow-lg">
-							<span class="text-xs font-bold text-blue-300 mb-1 block">{work.frontmatter.category}</span>
-							<h3 class="text-sm font-bold truncate">{work.frontmatter.title}</h3>
-						</div>
-					</a>
-				))}
-			</div>
-		</div>
-	</section>
+        <!-- 右側：スクラップブック風 動く写真立て（カルーセル） -->
+        <div class="md:w-1/2 w-full relative h-[300px] md:h-[350px]">
+            <!-- マスキングテープ装飾 -->
+            <div class="absolute -top-3 right-12 w-28 h-8 bg-amber-200/60 backdrop-blur-sm rotate-[5deg] z-20 shadow-sm border border-white/40"></div>
+            
+            <div class="relative w-full h-full bg-white p-3 rounded-lg shadow-xl border border-slate-200 rotate-[-2deg] hover:rotate-0 hover:-translate-y-1 transition duration-500">
+                {featuredWorks.map((work: any, index: number) => (
+                    <a href={work.url} 
+                       class={`carousel-item absolute inset-3 transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100 z-10 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'}`}>
+                        <picture>
+                            <source srcset={work.frontmatter.image.replace(/\.(png|jpe?g)$/i, '.avif')} type="image/avif" />
+                            <img src={work.frontmatter.image} alt={work.frontmatter.title} class="w-full h-full object-cover rounded border border-slate-100" loading={index === 0 ? "eager" : "lazy"} decoding="async" />
+                        </picture>
+                        <div class="absolute bottom-3 left-3 right-3 bg-slate-900/80 backdrop-blur-md text-white p-3 rounded shadow-lg">
+                            <span class="text-xs font-bold text-blue-300 mb-1 block">{work.frontmatter.category}</span>
+                            <h3 class="text-sm font-bold truncate">{work.frontmatter.title}</h3>
+                        </div>
+                    </a>
+                ))}
+            </div>
+        </div>
+    </section>
 
-	<!-- About セクション -->
-	<section id="about" class="fade-in bg-white/70 backdrop-blur-sm py-20 border-y border-slate-200 scroll-mt-20">
-		<div class="max-w-5xl mx-auto px-6">
-			<h2 class="text-3xl font-bold mb-8 text-slate-900 flex items-baseline gap-3">
-				About <span class="text-base font-normal text-slate-500">私について</span>
-			</h2>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-				<div>
-					<p class="text-slate-700 leading-loose text-lg">
-						現在の職場でインハウス（社内）クリエイター兼DX推進担当として活動しています。<br>
-						広報動画の制作やグラフィックデザインといったクリエイティブ業務に加え、生成AIを活用したプログラミング（バイブコーディング）によるWebアプリ開発（Python/GAS）など、AIを駆使した社内の業務改善に取り組んでいます。<br><br>
-						デジタル上のシステム構築だけでなく、物理的な立体造形（標本アートやカルトナージュ等）の経験も持ち、手段を問わず「課題を解決するためのモノづくり」を得意としています。
-					</p>
-				</div>
-				<!-- 略歴タイムライン -->
-				<div>
-					<h3 class="text-xl font-bold border-b border-slate-200 pb-2 mb-6 text-slate-800">略歴 / Career</h3>
-					<div class="space-y-6 border-l-2 border-slate-200 ml-2 pl-6">
-						<div class="relative">
-							<span class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-slate-300 border-4 border-white"></span>
-							<p class="text-sm text-slate-500 font-bold mb-1">京都精華大学（中途退学）</p>
-							<p class="text-slate-700 text-sm leading-relaxed">在籍時にデザインや表現の基礎を学ぶ。ヘンリー・ダーガーをモチーフにしたポスター制作など。</p>
-						</div>
-						<div class="relative">
-							<span class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-slate-300 border-4 border-white"></span>
-							<p class="text-sm text-slate-500 font-bold mb-1">個人制作活動期</p>
-							<p class="text-slate-700 text-sm leading-relaxed">実寸大の蝶の標本風アートを制作しメルカリで完売。小説執筆、動画投稿などマルチに活動。</p>
-						</div>
-						<div class="relative">
-							<span class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-slate-300 border-4 border-white"></span>
-							<p class="text-sm text-slate-500 font-bold mb-1">就労継続支援A型 在籍時</p>
-							<p class="text-slate-700 text-sm leading-relaxed">クラウドソーシングのコンペティションに多数参加。ロゴデザインやドット絵などで評価を獲得。</p>
-						</div>
-						<div class="relative">
-							<span class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-blue-500 border-4 border-white shadow-sm"></span>
-							<p class="text-sm text-blue-600 font-bold mb-1">現在（介護・福祉事業会社）</p>
-							<p class="text-slate-700 text-sm leading-relaxed">パート社員として入社後、生成AIを活用したプログラミング（GAS/Python）により業務改善アプリを自ら構築。外部審査員を招くグループ横断のAIコンテストでファイナリスト（上位3名）に選出されるほか、社内表彰も受賞。DX推進とクリエイティブの両面から社内の課題解決に取り組む。</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- Skills セクション -->
-	<section id="skills" class="fade-in py-20 scroll-mt-20">
-		<div class="max-w-5xl mx-auto px-6">
-			<h2 class="text-3xl font-bold mb-10 text-slate-900 flex items-baseline gap-3">
-				Skills <span class="text-base font-normal text-slate-500">スキル</span>
-			</h2>
-			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-				<!-- カード1: 自動化・ツール (歯車のアイコン) -->
-				<button data-filter-target="自動化・ツール" class="skill-card text-left w-full bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-md hover:-translate-y-1 transition duration-300 cursor-pointer">
-					<div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4">
-						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.107-1.204l-.527-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z" />
-							<path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-						</svg>
-					</div>
-					<h3 class="text-xl font-bold mb-3 text-slate-900">自動化・ツール</h3>
-					<ul class="list-disc list-inside text-slate-600 space-y-2 text-sm">
-						<li>自社アプリ構築 (Python / GAS)</li>
-						<li>生成AIを駆使したプログラミング</li>
-						<li>AIを用いた業務ツールの開発</li>
-					</ul>
-				</button>
-				<!-- カード2: デザイン・動画 (カメラのアイコン) -->
-				<button data-filter-target="デザイン・動画" class="skill-card text-left w-full bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-md hover:-translate-y-1 transition duration-300 cursor-pointer">
-					<div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-4">
-						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
-							<path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
-						</svg>
-					</div>
-					<h3 class="text-xl font-bold mb-3 text-slate-900">デザイン・動画</h3>
-					<ul class="list-disc list-inside text-slate-600 space-y-2 text-sm">
-						<li>動画制作 (Premiere Pro / After Effects / CapCut)</li>
-						<li>デザイン (Illustrator / Photoshop / Affinity)</li>
-						<li>資料・UI設計 (Canva 等)</li>
-					</ul>
-				</button>
-				<!-- カード3: 造形・クラフト (キューブのアイコン) -->
-				<button data-filter-target="造形・クラフト" class="skill-card text-left w-full bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-md hover:-translate-y-1 transition duration-300 cursor-pointer">
-					<div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center mb-4">
-						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
-						</svg>
-					</div>
-					<h3 class="text-xl font-bold mb-3 text-slate-900">造形・クラフト</h3>
-					<ul class="list-disc list-inside text-slate-600 space-y-2 text-sm">
-						<li>ハンドクラフト</li>
-						<li>記事執筆・エッセイ</li>
-						<li>カルトナージュ</li>
-					</ul>
-				</button>
-			</div>
-		</div>
-	</section>
-
-	<!-- Works セクション -->
-	<section id="works" class="fade-in py-20 border-t border-slate-200 scroll-mt-20">
-		<div class="max-w-5xl mx-auto px-6">
-			<h2 class="text-3xl font-bold mb-8 text-slate-900 flex items-baseline gap-3">
-				Works <span class="text-base font-normal text-slate-500">実績</span>
-			</h2>
-			
-			<!-- タグメニュー（初期状態のデザインを統一） -->
-			<div class="flex flex-wrap gap-3 mb-10">
+    <!-- Works セクション（上に移動） -->
+    <section id="works" class="fade-in bg-white/70 backdrop-blur-sm py-20 border-y border-slate-200 scroll-mt-20">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-8 text-slate-900 flex items-baseline gap-3">
+                Works <span class="text-base font-normal text-slate-500">実績</span>
+            </h2>
+            
+            <!-- タグメニュー -->
+            <div class="flex flex-wrap gap-3 mb-10">
                 <button class="filter-btn px-5 py-2 rounded-full font-bold text-sm bg-slate-900 text-white border border-slate-900 hover:bg-slate-800 transition" data-filter="all">すべて</button>
                 <button class="filter-btn px-5 py-2 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition" data-filter="自動化・ツール">自動化・ツール</button>
                 <button class="filter-btn px-5 py-2 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition" data-filter="デザイン・動画">デザイン・動画</button>
                 <button class="filter-btn px-5 py-2 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition" data-filter="造形・クラフト">造形・クラフト</button>
                 <button class="filter-btn px-5 py-2 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition" data-filter="記事執筆・エッセイ">記事執筆・エッセイ</button>
             </div>
-			
-			<div class="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 pt-4">
+            
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 pt-4">
                 {allWorks.map((work: any) => (
                     <a href={work.url} data-category={work.frontmatter.category} class="work-card fade-in group relative bg-white p-2 md:p-3 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-2 hover:-rotate-1 transition duration-300 border border-slate-200 flex flex-col h-full">
                         <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-16 md:w-24 h-5 md:h-7 bg-amber-200/60 backdrop-blur-sm rotate-[-3deg] z-10 shadow-sm border border-white/40"></div>
@@ -188,10 +89,101 @@ const featuredWorks = allWorks.filter((work: any) => work.frontmatter.image).sli
                     </a>
                 ))}
             </div>
-		</div>
-	</section>
+        </div>
+    </section>
 
-	<script>
+    <!-- About セクション -->
+    <section id="about" class="fade-in py-20 scroll-mt-20">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-8 text-slate-900 flex items-baseline gap-3">
+                About <span class="text-base font-normal text-slate-500">私について</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <p class="text-slate-700 leading-loose text-lg">
+                        現在の職場でインハウス（社内）クリエイター兼DX推進担当として活動しています。<br>
+                        広報動画の制作やグラフィックデザインといったクリエイティブ業務に加え、生成AIを活用したプログラミング（バイブコーディング）によるWebアプリ開発（Python/GAS）など、AIを駆使した社内の業務改善に取り組んでいます。<br><br>
+                        デジタル上のシステム構築だけでなく、物理的な立体造形（標本アートやカルトナージュ等）の経験も持ち、手段を問わず「課題を解決するためのモノづくり」を得意としています。
+                    </p>
+                </div>
+                <!-- 略歴タイムライン -->
+                <div>
+                    <h3 class="text-xl font-bold border-b border-slate-200 pb-2 mb-6 text-slate-800">略歴 / Career</h3>
+                    <div class="space-y-6 border-l-2 border-slate-200 ml-2 pl-6">
+                        <div class="relative">
+                            <span class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-slate-300 border-4 border-white"></span>
+                            <p class="text-sm text-slate-500 font-bold mb-1">京都精華大学（中途退学）</p>
+                            <p class="text-slate-700 text-sm leading-relaxed">在籍時にデザインや表現の基礎を学ぶ。ヘンリー・ダーガーをモチーフにしたポスター制作など。</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-slate-300 border-4 border-white"></span>
+                            <p class="text-sm text-slate-500 font-bold mb-1">個人制作活動期</p>
+                            <p class="text-slate-700 text-sm leading-relaxed">実寸大の蝶の標本風アートを制作しメルカリで完売。小説執筆、動画投稿などマルチに活動。</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-slate-300 border-4 border-white"></span>
+                            <p class="text-sm text-slate-500 font-bold mb-1">就労継続支援A型 在籍時</p>
+                            <p class="text-slate-700 text-sm leading-relaxed">クラウドソーシングのコンペティションに多数参加。ロゴデザインやドット絵などで評価を獲得。</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-blue-500 border-4 border-white shadow-sm"></span>
+                            <p class="text-sm text-blue-600 font-bold mb-1">現在（介護・福祉事業会社）</p>
+                            <p class="text-slate-700 text-sm leading-relaxed">パート社員として入社後、生成AIを活用したプログラミング（GAS/Python）により業務改善アプリを自ら構築。外部審査員を招くグループ横断のAIコンテストでファイナリスト（上位3名）に選出されるほか、社内表彰も受賞。DX推進とクリエイティブの両面から社内の課題解決に取り組む。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills セクション -->
+    <section id="skills" class="fade-in bg-white/70 backdrop-blur-sm py-20 border-y border-slate-200 scroll-mt-20">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-10 text-slate-900 flex items-baseline gap-3">
+                Skills <span class="text-base font-normal text-slate-500">スキル</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- カード1: 自動化・ツール -->
+                <button data-filter-target="自動化・ツール" class="skill-card text-left w-full bg-white/90 p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-md hover:-translate-y-1 transition duration-300 cursor-pointer">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.107-1.204l-.527-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-slate-900">自動化・ツール</h3>
+                    <ul class="list-disc list-inside text-slate-600 space-y-2 text-sm">
+                        <li>自社アプリ構築 (Python / GAS)</li>
+                        <li>生成AIを駆使したプログラミング</li>
+                        <li>AIを用いた業務ツールの開発</li>
+                    </ul>
+                </button>
+                <!-- カード2: デザイン・動画 -->
+                <button data-filter-target="デザイン・動画" class="skill-card text-left w-full bg-white/90 p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-md hover:-translate-y-1 transition duration-300 cursor-pointer">
+                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" /><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-slate-900">デザイン・動画</h3>
+                    <ul class="list-disc list-inside text-slate-600 space-y-2 text-sm">
+                        <li>動画制作 (Premiere Pro / After Effects / CapCut)</li>
+                        <li>デザイン (Illustrator / Photoshop / Affinity)</li>
+                        <li>資料・UI設計 (Canva 等)</li>
+                    </ul>
+                </button>
+                <!-- カード3: 造形・クラフト -->
+                <button data-filter-target="造形・クラフト" class="skill-card text-left w-full bg-white/90 p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-md hover:-translate-y-1 transition duration-300 cursor-pointer">
+                    <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" /></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-slate-900">造形・クラフト</h3>
+                    <ul class="list-disc list-inside text-slate-600 space-y-2 text-sm">
+                        <li>ハンドクラフト</li>
+                        <li>記事執筆・エッセイ</li>
+                        <li>カルトナージュ</li>
+                    </ul>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script>
         document.addEventListener('DOMContentLoaded', () => {
             const carouselItems = document.querySelectorAll('.carousel-item');
             if (carouselItems.length > 1) {
@@ -213,10 +205,8 @@ const featuredWorks = allWorks.filter((work: any) => work.frontmatter.image).sli
             const workCards = document.querySelectorAll('.work-card');
             const filterBtns = document.querySelectorAll('.filter-btn');
 
-            // 修正1：引数が「文字列（または空）」であることを明示
             function applyFilter(filterKeyword: string | null) {
                 workCards.forEach(c => {
-                    // 修正2：HTML要素として明示し、styleエラーを解消
                     const card = c as HTMLElement;
                     const category = card.getAttribute('data-category') || '';
                     if (filterKeyword === 'all' || (filterKeyword && category.includes(filterKeyword))) {
@@ -239,14 +229,12 @@ const featuredWorks = allWorks.filter((work: any) => work.frontmatter.image).sli
                 card.addEventListener('click', () => {
                     const target = card.getAttribute('data-filter-target');
                     applyFilter(target);
-                    // 修正3：「?」を付けて、もしIDが見つからなかった場合のnullエラーを回避
                     document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' });
                 });
             });
 
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
-                    // 修正4：属性が取得できなかった場合の保険として 'all' を設定
                     applyFilter(btn.getAttribute('data-filter') || 'all');
                 });
             });
