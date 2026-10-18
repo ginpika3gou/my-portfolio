@@ -22,7 +22,7 @@ const { frontmatter } = Astro.props;
         <img 
           src={frontmatter.image} 
           alt={frontmatter.title} 
-          class="w-full h-auto max-h-[70vh] rounded-xl mb-12 object-contain" 
+          class="mx-auto max-w-full h-auto max-h-[70vh] rounded-xl mb-12 shadow-sm object-cover" 
           loading="lazy" 
           decoding="async"
         />
