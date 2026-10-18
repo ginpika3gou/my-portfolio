@@ -38,7 +38,12 @@ const { title } = Astro.props;
         <!-- ヘッダー -->
         <header class="fixed w-full bg-white/80 backdrop-blur-md shadow-sm z-50 transition-all">
             <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-                <a href="/" class="text-xl font-bold tracking-widest text-slate-900">AKIYOSHI KEIICHI</a>
+                
+                <!-- ▼ ここを変更 ▼ -->
+                <a href="/" class="flex flex-col items-start leading-none group hover:opacity-80 transition">
+                    <span class="text-xl font-bold text-slate-900 tracking-widest">秋吉慧一</span>
+                    <span class="text-[0.65rem] font-medium text-slate-500 tracking-[0.2em] mt-1">AKIYOSHI KEIICHI</span>
+                </a>
                 
                 <!-- PC用メニュー -->
                 <nav class="hidden md:flex gap-6 text-sm font-bold text-slate-600">
